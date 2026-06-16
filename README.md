@@ -1,105 +1,219 @@
-# 🚀 AI Code Reviewer
+# 🤖 AI Code Reviewer
 
-An interactive, full-stack web application that provides real-time AI feedback on your code. Built with a modern **React** frontend and a **Node.js/Express** backend, this tool allows developers to write code in a syntax-highlighted editor and receive professional refactoring advice instantly.
+> An interactive, full-stack web application that provides **real-time AI feedback** on your code — covering performance, readability, and security.
+
+![Tech Stack](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat&logo=react)
+![Tech Stack](https://img.shields.io/badge/Backend-Node.js%20%2F%20Express-339933?style=flat&logo=node.js)
+![Tech Stack](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=flat&logo=google)
+![JavaScript](https://img.shields.io/badge/Language-JavaScript-F7DF1E?style=flat&logo=javascript)
+
+---
+
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [How It Works](#-how-it-works)
+- [Data Flow](#-data-flow)
+
+
+
+---
+
+## 🌟 Overview
+
+**AI Code Reviewer** is a developer tool that lets you paste or write any code snippet and instantly receive structured, AI-generated feedback. The app analyses your code for:
+
+- 🐛 **Bugs & logical errors**
+- ⚡ **Performance improvements**
+- 📖 **Readability & naming conventions**
+- 🔒 **Security vulnerabilities**
+- 🔧 **Refactoring suggestions**
+
+Built with a clean split between a React frontend (syntax-highlighted editor) and a Node.js/Express backend (AI integration), it demonstrates a complete fullstack AI-powered workflow.
 
 ---
 
 ## ✨ Features
 
-* **Live Code Editor:** Powered by `react-simple-code-editor` with syntax highlighting via `Prismjs`.
-* **AI Insights:** Sends code to a backend API to receive structured feedback on performance, readability, and security.
-* **Markdown Support:** Displays AI reviews in a beautiful, readable format using `react-markdown` and `rehype-highlight`.
-* **Real-time Feedback:** Includes loading states and comprehensive error handling for a seamless experience.
+- **Live Code Editor** — Powered by `react-simple-code-editor` with syntax highlighting via `PrismJS`
+- **AI-Powered Reviews** — Sends code to a backend API connected to Google Gemini / OpenAI for deep code analysis
+- **Markdown Rendering** — AI feedback is displayed in a beautifully formatted, human-readable layout using `react-markdown` and `rehype-highlight`
+- **Real-time Loading States** — Async feedback with clear loading indicators and error handling
+- **GitHub Dark Theme** — Syntax highlighting styled with Highlight.js GitHub Dark theme
+- **Full-Stack Architecture** — Clean separation of concerns between frontend and backend
 
 ---
 
 ## 🛠 Tech Stack
 
-| Component | Technology |
-| :--- | :--- |
-| **Frontend** | React, Axios, PrismJS, React-Markdown |
+| Layer | Technology |
+|---|---|
+| **Frontend** | React, Axios, PrismJS, react-simple-code-editor, react-markdown |
 | **Backend** | Node.js, Express, CORS |
+| **AI Integration** | Google Gemini / OpenAI GPT |
 | **Styling** | CSS3 (Flexbox), Highlight.js (GitHub Dark theme) |
-| **AI Integration** | Google Gemini / OpenAI (Backend Integration) |
+| **Language** | JavaScript (79.1%), CSS (17.7%), HTML (3.2%) |
+
+---
+
+## 📁 Project Structure
+
+```
+Code-Reviewer/
+├── BackEnd/
+│   ├── src/
+│   │   └── ...          # Express routes, AI integration logic
+│   ├── package.json
+│   └── .env             # API keys (not committed)
+│
+├── Frontend/
+│   ├── src/
+│   │   ├── components/  # Editor and Review panel components
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   └── package.json
+│
+├── .gitignore
+└── README.md
+```
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Prerequisites
-* [Node.js](https://nodejs.org/) (v18 or higher recommended)
-* npm or yarn
+### Prerequisites
 
-### 2. Installation
+Make sure you have the following installed:
 
-**Backend Setup:**
-```bash
-cd BackEnd
-npm install
-npm run dev
-```
-**Frontend Setup:**
-```bash
-cd Frontend
-npm install
-npm run server
-```
-
-## 💡 How It Works
-
-### 1️⃣ Input  
-The user writes code in the left-hand editor panel using the syntax-highlighted **Editor** component.
-
-### 2️⃣ Request  
-Clicking the **"Review"** button triggers an asynchronous `POST` request via **Axios**, sending the code string to the **Node.js backend**.
-
-### 3️⃣ Processing  
-The backend:
-- Receives the code  
-- Communicates with an AI model (e.g., **Gemini** or **GPT**)  
-- Uses a specialized prompt designed for **code auditing and refactoring**
-
-### 4️⃣ Response  
-The AI generates a review in **Markdown format**, which the backend sends back to the frontend as a **JSON response**.
-
-### 5️⃣ Render  
-The frontend:
-- Updates its internal state  
-- Uses the `react-markdown` component to parse the Markdown  
-- Displays a clean, human-readable UI with syntax highlighting  
+- [Node.js](https://nodejs.org/) v18 or higher
+- `npm` or `yarn`
+- A **Google Gemini API key** (or OpenAI API key)
 
 ---
 
-## 🔄 Data Flow Diagram
+### 1. Clone the Repository
 
-```text
+```bash
+git clone https://github.com/nik1910-sd/Code-Reviewer.git
+cd Code-Reviewer
+```
+
+---
+
+### 2. Backend Setup
+
+```bash
+cd BackEnd
+npm install
+```
+
+Create a `.env` file in the `BackEnd` directory and add your AI API key:
+
+```env
+GEMINI_API_KEY=your_google_gemini_api_key_here
+# or
+OPENAI_API_KEY=your_openai_api_key_here
+
+PORT=3000
+```
+
+Start the backend server:
+
+```bash
+npm run dev
+```
+
+The backend will run on `http://localhost:3000`
+
+---
+
+### 3. Frontend Setup
+
+Open a new terminal:
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+The frontend will run on `http://localhost:5173` (Vite default)
+
+---
+
+### 4. Open in Browser
+
+Navigate to `http://localhost:5173`, write or paste your code in the editor, and click **Review** to get instant AI feedback.
+
+---
+
+## 💡 How It Works
+
+```
+1️⃣  INPUT      →  User writes/pastes code in the left-side editor panel
+
+2️⃣  REQUEST    →  Clicking "Review" fires an async POST request via Axios
+                   to the Node.js backend with the code as the payload
+
+3️⃣  PROCESSING →  Backend receives the code, constructs a specialized
+                   prompt for code auditing, and sends it to the AI model
+                   (Gemini / GPT)
+
+4️⃣  RESPONSE   →  AI returns a structured Markdown review covering bugs,
+                   performance, readability, and security
+
+5️⃣  RENDER     →  Frontend parses the Markdown via react-markdown and
+                   displays a clean, syntax-highlighted review panel
+```
+
+---
+
+## 🔄 Data Flow
+
+```
 User (Code Input)
         │
         ▼
-Frontend (React Editor)
+  React Frontend
+  (Editor Panel)
         │
         ▼
-Axios POST Request
+  Axios POST /review
         │
         ▼
-Node.js Backend
+  Node.js / Express Backend
         │
         ▼
-AI Model (Gemini / GPT)
+  AI Model (Gemini / GPT)
+  [Code Audit Prompt]
         │
         ▼
-Markdown Review (JSON Response)
+  Markdown Review Response (JSON)
         │
         ▼
-React State Update
+  React State Update
         │
         ▼
-react-markdown Renderer
+  react-markdown Renderer
         │
         ▼
-Formatted Code Review UI
+  Formatted Review UI (Right Panel)
 ```
 
+---
 
 
 
+## 👤 Author
+
+**nik1910-sd**
+- GitHub: [@nik1910-sd](https://github.com/nik1910-sd)
+
+---
+
+> ⭐ If you found this project helpful, give it a star on GitHub!
